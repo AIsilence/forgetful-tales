@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Brain, BookOpen, Users, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const AboutCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => {
   return (
@@ -80,10 +81,12 @@ const About = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <Button className="bg-gradient-to-r from-silence-purple to-silence-pink hover:opacity-90 text-white">
-            <BookOpen className="mr-2 h-5 w-5" />
-            Experience The Book
-          </Button>
+          <Link to="/book-experience">
+            <Button className="bg-gradient-to-r from-silence-purple to-silence-pink hover:opacity-90 text-white">
+              <BookOpen className="mr-2 h-5 w-5" />
+              Experience The Book
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

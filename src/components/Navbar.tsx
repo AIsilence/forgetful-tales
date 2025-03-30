@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Brain, BookOpen, Landmark, Users, Moon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Menu, X, Brain, BookOpen, Landmark, Users, HelpCircle } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,12 +25,17 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   const navLinks = [
-    { name: 'About', href: '#about', icon: <Brain className="mr-1" size={16} /> },
-    { name: 'Story', href: '#story', icon: <BookOpen className="mr-1" size={16} /> },
-    { name: 'Tokenomics', href: '#tokenomics', icon: <Landmark className="mr-1" size={16} /> },
-    { name: 'Community', href: '#community', icon: <Users className="mr-1" size={16} /> },
+    { name: 'Story', href: '/story', icon: <BookOpen className="mr-1" size={16} /> },
+    { name: 'Learn More', href: '/learn-more', icon: <Brain className="mr-1" size={16} /> },
+    { name: 'Experience', href: '/book-experience', icon: <BookOpen className="mr-1" size={16} /> },
+    { name: 'FAQ', href: '/faq', icon: <HelpCircle className="mr-1" size={16} /> },
   ];
 
   return (
@@ -46,25 +52,28 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navLinks.map((item) => (
-              <a 
+              <Link 
                 key={item.name} 
-                href={item.href} 
-                className="text-sm text-white/80 hover:text-silence-purple flex items-center transition duration-300"
+                to={item.href} 
+                className={`text-sm flex items-center transition duration-300 ${
+                  location.pathname === item.href 
+                    ? 'text-silence-purple' 
+                    : 'text-white/80 hover:text-silence-purple'
+                }`}
               >
                 {item.icon}
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" className="border-silence-purple text-silence-purple hover:bg-silence-purple/20">
-              Whitepaper
-            </Button>
-            <Button className="bg-gradient-to-r from-silence-purple to-silence-pink text-white hover:opacity-90">
-              Launch App
-            </Button>
+            <Link to="/book-experience">
+              <Button className="bg-gradient-to-r from-silence-purple to-silence-pink text-white hover:opacity-90">
+                Launch App
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -83,23 +92,25 @@ const Navbar = () => {
           <div className="md:hidden bg-silence-dark/90 backdrop-blur-lg mt-4 rounded-md p-4 animate-fade-in border border-silence-purple/30">
             <nav className="flex flex-col space-y-4">
               {navLinks.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-white/80 hover:text-silence-purple flex items-center transition duration-300"
+                  to={item.href}
+                  className={`flex items-center transition duration-300 ${
+                    location.pathname === item.href 
+                      ? 'text-silence-purple' 
+                      : 'text-white/80 hover:text-silence-purple'
+                  }`}
                 >
                   {item.icon}
                   {item.name}
-                </a>
+                </Link>
               ))}
               <div className="pt-4 border-t border-gray-700 flex flex-col space-y-3">
-                <Button variant="outline" className="border-silence-purple text-silence-purple hover:bg-silence-purple/20 w-full">
-                  Whitepaper
-                </Button>
-                <Button className="bg-gradient-to-r from-silence-purple to-silence-pink text-white hover:opacity-90 w-full">
-                  Launch App
-                </Button>
+                <Link to="/book-experience" className="w-full">
+                  <Button className="bg-gradient-to-r from-silence-purple to-silence-pink text-white hover:opacity-90 w-full">
+                    Launch App
+                  </Button>
+                </Link>
               </div>
             </nav>
           </div>

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Brain, ArrowRight, BookOpen, Volume2, BookX } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
@@ -40,15 +41,19 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-gradient-to-r from-silence-purple to-silence-pink hover:opacity-90 text-white">
-                <BookOpen className="mr-2 h-5 w-5" />
-                Read the Story
-              </Button>
-              <Button size="lg" variant="outline" className="border-silence-purple text-white hover:bg-silence-purple/20">
-                <Brain className="mr-2 h-5 w-5" />
-                Learn More
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link to="/story">
+                <Button size="lg" className="bg-gradient-to-r from-silence-purple to-silence-pink hover:opacity-90 text-white">
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  Read the Story
+                </Button>
+              </Link>
+              <Link to="/learn-more">
+                <Button size="lg" variant="outline" className="border-silence-purple text-white hover:bg-silence-purple/20">
+                  <Brain className="mr-2 h-5 w-5" />
+                  Learn More
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
 
             <div className="mt-8 text-white/60 text-sm">
@@ -89,9 +94,11 @@ const Hero = () => {
                         <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10">
                           Forget
                         </Button>
-                        <Button size="sm" className="bg-silence-purple text-white hover:bg-silence-purple/90">
-                          Continue Reading
-                        </Button>
+                        <Link to="/book-experience">
+                          <Button size="sm" className="bg-silence-purple text-white hover:bg-silence-purple/90">
+                            Continue Reading
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </div>

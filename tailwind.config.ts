@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				silence: {
+					dark: '#1A1F2C',
+					purple: '#8B5CF6',
+					pink: '#D946EF',
+					cyan: '#0EA5E9',
+					neon: '#39FF14',
 				}
 			},
 			borderRadius: {
@@ -84,11 +92,46 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'fade-out': {
+					'0%': { opacity: '1', transform: 'translateY(0)' },
+					'100%': { opacity: '0', transform: 'translateY(10px)' }
+				},
+				'glitch': {
+					'0%': { transform: 'translate(0)' },
+					'20%': { transform: 'translate(-3px, 3px)' },
+					'40%': { transform: 'translate(-3px, -3px)' },
+					'60%': { transform: 'translate(3px, 3px)' },
+					'80%': { transform: 'translate(3px, -3px)' },
+					'100%': { transform: 'translate(0)' }
+				},
+				'disappear-text': {
+					'0%': { opacity: '1' },
+					'50%': { opacity: '0.5' },
+					'100%': { opacity: '0' }
+				},
+				'flicker': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.3' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out',
+				'glitch': 'glitch 0.5s ease-in-out infinite',
+				'disappear-text': 'disappear-text 5s ease-out forwards',
+				'flicker': 'flicker 3s linear infinite',
+				'float': 'float 6s ease-in-out infinite',
 			}
 		}
 	},

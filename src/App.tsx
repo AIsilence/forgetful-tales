@@ -11,6 +11,8 @@ import Story from "./pages/Story";
 import LearnMore from "./pages/LearnMore";
 import BookExperience from "./pages/BookExperience";
 import FAQ from "./pages/FAQ";
+import Tokenomics from "./pages/Tokenomics";
+import Roadmap from "./pages/Roadmap";
 
 const App = () => {
   // Create a client instance that persists across renders
@@ -28,6 +30,8 @@ const App = () => {
             <Route path="/learn-more" element={<LearnMore />} />
             <Route path="/book-experience" element={<BookExperience />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/tokenomics" element={<Tokenomics />} />
+            <Route path="/roadmap" element={<Roadmap />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

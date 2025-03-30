@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Twitter, Send, BookOpen, Volume2, MessageSquare, RefreshCw } from "lucide-react";
+import { Twitter, BookOpen, Github, RefreshCw } from "lucide-react";
 
 const CommunityCard = ({ title, icon, description, buttonText, buttonIcon }: {
   title: string;
@@ -51,32 +51,18 @@ const MemeCard = ({ imageUrl, altText }: { imageUrl: string; altText: string }) 
 const Community = () => {
   const communityChannels = [
     {
-      title: "Twitter (X)",
+      title: "Twitter",
       icon: <Twitter size={20} />,
-      description: "Join the conversation on Twitter (X), where we share memes, updates, and engage with the crypto community.",
+      description: "Join the conversation on Twitter, where we share memes, updates, and engage with the crypto community.",
       buttonText: "Follow Us",
       buttonIcon: <Twitter size={16} />
     },
     {
-      title: "Telegram",
-      icon: <Send size={20} />,
-      description: "Our Telegram channel is the perfect place for real-time updates and direct interaction with the team.",
-      buttonText: "Join Channel",
-      buttonIcon: <Send size={16} />
-    },
-    {
-      title: "Discord",
-      icon: <MessageSquare size={20} />,
-      description: "The primary home of our community. Participate in events, games, and help shape the future of Silence.",
-      buttonText: "Join Server",
-      buttonIcon: <MessageSquare size={16} />
-    },
-    {
-      title: "Medium",
-      icon: <BookOpen size={20} />,
-      description: "Deep dives into our lore, tokenomics, and development updates. The place for the serious stuff.",
-      buttonText: "Read Articles",
-      buttonIcon: <BookOpen size={16} />
+      title: "GitHub",
+      icon: <Github size={20} />,
+      description: "Check out our open-source code, contribute to the project, and help us build the future of Silence.",
+      buttonText: "View Repository",
+      buttonIcon: <Github size={16} />
     }
   ];
 
@@ -99,7 +85,7 @@ const Community = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {communityChannels.map((channel, index) => (
             <CommunityCard
               key={index}

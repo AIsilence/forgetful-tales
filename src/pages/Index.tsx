@@ -4,8 +4,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import StoryExperience from "@/components/StoryExperience";
-import Tokenomics from "@/components/Tokenomics";
-import Roadmap from "@/components/Roadmap";
 import Community from "@/components/Community";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
@@ -48,8 +46,6 @@ const Index = () => {
         <Hero />
         <About />
         <StoryExperience />
-        <Tokenomics />
-        <Roadmap />
         <Community />
       </main>
       <Footer />

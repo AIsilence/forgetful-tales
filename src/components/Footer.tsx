@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Twitter, Send, BookOpen, Github, ExternalLink, Heart } from "lucide-react";
+import { Twitter, BookOpen, Github, ExternalLink, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -21,14 +21,11 @@ const Footer = () => {
                 <Twitter size={16} />
               </a>
               <a href="#" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
-                <Send size={16} />
+                <Github size={16} />
               </a>
               <Link to="/book-experience" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
                 <BookOpen size={16} />
               </Link>
-              <a href="#" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
-                <Github size={16} />
-              </a>
             </div>
           </div>
           
@@ -46,18 +43,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/learn-more?tab=tokenomics" className="text-white/60 hover:text-silence-purple transition-colors">
+                <Link to="/tokenomics" className="text-white/60 hover:text-silence-purple transition-colors">
                   Tokenomics
                 </Link>
               </li>
               <li>
-                <Link to="/learn-more" className="text-white/60 hover:text-silence-purple transition-colors">
+                <Link to="/roadmap" className="text-white/60 hover:text-silence-purple transition-colors">
                   Roadmap
                 </Link>
               </li>
               <li>
-                <Link to="/learn-more?tab=community" className="text-white/60 hover:text-silence-purple transition-colors">
-                  Community
+                <Link to="/book-experience" className="text-white/60 hover:text-silence-purple transition-colors">
+                  Experience The Book
                 </Link>
               </li>
             </ul>
@@ -80,21 +77,9 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="text-white/60 hover:text-silence-purple transition-colors flex items-center">
-                  Contract
+                  GitHub
                   <ExternalLink size={14} className="ml-1" />
                 </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/60 hover:text-silence-purple transition-colors flex items-center">
-                  Audit
-                  <ExternalLink size={14} className="ml-1" />
-                </a>
-              </li>
-              <li>
-                <Link to="/faq" className="text-white/60 hover:text-silence-purple transition-colors flex items-center">
-                  FAQ
-                  <ExternalLink size={14} className="ml-1" />
-                </Link>
               </li>
             </ul>
           </div>

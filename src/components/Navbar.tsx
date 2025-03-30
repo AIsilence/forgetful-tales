@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Brain, BookOpen, Landmark, Users, HelpCircle } from 'lucide-react';
+import { Menu, X, Brain, BookOpen, Landmark, HelpCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
@@ -35,6 +35,8 @@ const Navbar = () => {
     { name: 'Story', href: '/story', icon: <BookOpen className="mr-1" size={16} /> },
     { name: 'Learn More', href: '/learn-more', icon: <Brain className="mr-1" size={16} /> },
     { name: 'Experience', href: '/book-experience', icon: <BookOpen className="mr-1" size={16} /> },
+    { name: 'Tokenomics', href: '/tokenomics', icon: <Landmark className="mr-1" size={16} /> },
+    { name: 'Roadmap', href: '/roadmap', icon: <BookOpen className="mr-1" size={16} /> },
     { name: 'FAQ', href: '/faq', icon: <HelpCircle className="mr-1" size={16} /> },
   ];
 

@@ -2,6 +2,7 @@
 import React from "react";
 import { Twitter, BookOpen, Github, ExternalLink, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
+import silenceLogo from '@/assets/silence-logo.svg';
 
 const Footer = () => {
   return (
@@ -9,23 +10,21 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
-            <div className="mb-4">
-              <Link to="/" className="text-2xl font-bold text-white mb-2 block">SILENCE</Link>
-              <p className="text-white/60">
-                Embrace Oblivion, Unleash the Meme. The memory-based meme coin on Solana.
-              </p>
+            <div className="mb-4 flex items-center">
+              <img src={silenceLogo} alt="Silence Logo" className="h-10 w-10 mr-2" />
+              <Link to="/" className="text-2xl font-bold text-white block">SILENCE</Link>
             </div>
+            <p className="text-white/60 mt-2">
+              Embrace Oblivion, Unleash the Meme. The memory-based meme coin on Solana.
+            </p>
             
-            <div className="flex space-x-3">
-              <a href="#" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
+            <div className="flex space-x-3 mt-4">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
                 <Twitter size={16} />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
                 <Github size={16} />
               </a>
-              <Link to="/book-experience" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
-                <BookOpen size={16} />
-              </Link>
             </div>
           </div>
           
@@ -76,7 +75,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-white/60 hover:text-silence-purple transition-colors flex items-center">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-silence-purple transition-colors flex items-center">
                   GitHub
                   <ExternalLink size={14} className="ml-1" />
                 </a>

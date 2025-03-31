@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Brain, BookOpen, Landmark, HelpCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import silenceLogo from '@/assets/silence-logo.svg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +47,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
+            <img src={silenceLogo} alt="Silence Logo" className="h-10 w-10 mr-2" />
             <span className="text-2xl font-bold text-white relative">
               <span className="glitch-wrapper" data-text="SILENCE">SILENCE</span>
             </span>

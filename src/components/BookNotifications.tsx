@@ -17,16 +17,28 @@ const BookNotifications = () => {
   useEffect(() => {
     // Simulated notifications that would normally come from a backend
     const sampleNotifications: BookNotification[] = [
-      { id: 1, message: "New chapter unlocked: The Forgotten Memory", icon: "book" as const },
-      { id: 2, message: "You've earned 50 Memory Points for your recall abilities", icon: "award" as const },
-      { id: 3, message: "Memory retention improved by 15% this week", icon: "brain" as const }
+      { 
+        id: 1, 
+        message: "New chapter unlocked: The Forgotten Memory", 
+        icon: "book" as const,
+        timestamp: new Date()
+      },
+      { 
+        id: 2, 
+        message: "You've earned 50 Memory Points for your recall abilities", 
+        icon: "award" as const,
+        timestamp: new Date()
+      },
+      { 
+        id: 3, 
+        message: "Memory retention improved by 15% this week", 
+        icon: "brain" as const,
+        timestamp: new Date() 
+      }
     ];
     
     setTimeout(() => {
-      setNotifications(sampleNotifications.map(n => ({
-        ...n,
-        timestamp: new Date()
-      })));
+      setNotifications(sampleNotifications);
     }, 3000);
   }, []);
   

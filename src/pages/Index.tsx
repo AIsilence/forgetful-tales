@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -10,6 +9,7 @@ import CryptoWidget from "@/components/CryptoWidget";
 import BookPreview from "@/components/BookPreview";
 import BookNotifications from "@/components/BookNotifications";
 import { useToast } from "@/hooks/use-toast";
+import { Brain } from "lucide-react";
 
 const Index = () => {
   const { toast } = useToast();

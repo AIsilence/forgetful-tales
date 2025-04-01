@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-import { BookOpen, ArrowLeft, Brain, Volume2, VolumeX, RefreshCw, Share2 } from "lucide-react";
+import { BookOpen, ArrowLeft, Brain, Volume2, VolumeX, RefreshCw, Share2, User, Wallet, Settings as SettingsIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -16,8 +15,9 @@ const BookExperience = () => {
   const [audioEnabled, setAudioEnabled] = useState(false);
   const [memoryQuiz, setMemoryQuiz] = useState(null);
   const [quizAnswered, setQuizAnswered] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
+  const [memoryPoints, setMemoryPoints] = useState(0);
   
-  // Story fragments to randomly combine
   const storyFragments = {
     beginnings: [
       "In the darkest corner of the blockchain,",
@@ -67,15 +67,44 @@ const BookExperience = () => {
     }
   ];
   
-  // Generate a random story
+  useEffect(() => {
+    const savedProfile = localStorage.getItem("silence-user-profile");
+    if (savedProfile) {
+      try {
+        const parsed = JSON.parse(savedProfile);
+        setUserProfile(parsed);
+      } catch (error) {
+        console.error("Error parsing profile data", error);
+      }
+    }
+
+    setMemoryPoints(Math.floor(Math.random() * 500) + 100);
+  }, []);
+  
   const generateStory = () => {
     const getRandomElement = (array) => array[Math.floor(Math.random() * array.length)];
     
-    const story = `${getRandomElement(storyFragments.beginnings)} ${getRandomElement(storyFragments.characters)} ${getRandomElement(storyFragments.actions)} ${getRandomElement(storyFragments.endings)}`;
+    let story = `${getRandomElement(storyFragments.beginnings)} ${getRandomElement(storyFragments.characters)} ${getRandomElement(storyFragments.actions)} ${getRandomElement(storyFragments.endings)}`;
+    
+    if (userProfile && userProfile.username) {
+      if (Math.random() > 0.5) {
+        story = story.replace(
+          getRandomElement(storyFragments.characters), 
+          `${userProfile.username}, the curious reader,`
+        );
+      }
+      
+      if (userProfile.favoriteGenre === "mystery") {
+        story += " The clues were hidden in plain sight, yet remained unseen.";
+      } else if (userProfile.favoriteGenre === "horror") {
+        story += " A cold shiver ran down the spine of anyone who remembered.";
+      } else if (userProfile.favoriteGenre === "adventure") {
+        story += " The journey continued beyond what any memory could contain.";
+      }
+    }
     
     setTextContent(story);
     
-    // Generate a quiz based on the story
     const randomQuestion = { ...quizQuestions[Math.floor(Math.random() * quizQuestions.length)] };
     setMemoryQuiz(randomQuestion);
   };
@@ -95,11 +124,15 @@ const BookExperience = () => {
   
   const answerQuiz = (index) => {
     setQuizAnswered(true);
+    const isCorrect = index === memoryQuiz.correctIndex;
     
-    if (index === memoryQuiz.correctIndex) {
+    if (isCorrect) {
+      const pointsEarned = Math.floor(Math.random() * 30) + 10;
+      setMemoryPoints(prev => prev + pointsEarned);
+      
       toast({
         title: "Memory intact!",
-        description: "You remembered correctly. The book recognizes your mind.",
+        description: `You remembered correctly. +${pointsEarned} memory points earned!`,
       });
     } else {
       toast({
@@ -109,7 +142,6 @@ const BookExperience = () => {
       });
     }
     
-    // Reset after a delay
     setTimeout(() => {
       setIsReading(false);
     }, 3000);
@@ -121,6 +153,25 @@ const BookExperience = () => {
       title: audioEnabled ? "Sound off" : "Sound on",
       description: audioEnabled ? "The whispers fade to silence." : "You can now hear the whispers of the void.",
     });
+  };
+  
+  const shareMemory = () => {
+    const shareText = `I just experienced the Book of Silence and earned ${memoryPoints} memory points! Can you remember more than me? #SilenceToken`;
+    
+    if (navigator.share) {
+      navigator.share({
+        title: 'Book of Silence',
+        text: shareText,
+        url: window.location.href
+      }).catch((error) => console.error('Error sharing:', error));
+    } else {
+      navigator.clipboard.writeText(shareText).then(() => {
+        toast({
+          title: "Copied to clipboard",
+          description: "Share your memory with others!",
+        });
+      });
+    }
   };
   
   useEffect(() => {
@@ -159,17 +210,36 @@ const BookExperience = () => {
       
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
-          <div className="flex items-center mb-8">
+          <div className="flex items-center justify-between mb-8">
             <Link to="/" className="text-white/70 hover:text-white flex items-center transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Link>
+            
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 bg-silence-purple/20 px-3 py-1 rounded-full">
+                <Brain className="h-4 w-4 text-silence-purple" />
+                <span className="text-sm font-medium">{memoryPoints} MP</span>
+              </div>
+              
+              <Link to="/settings">
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <SettingsIcon className="h-5 w-5 text-white/70" />
+                </Button>
+              </Link>
+            </div>
           </div>
           
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-silence-purple to-silence-pink">
+            <h1 className="text-3xl md:text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-silence-purple to-silence-pink">
               Experience The Book of Silence
             </h1>
+            
+            {userProfile && (
+              <p className="text-white/70 mb-6">
+                Welcome back, {userProfile.username}. Your memory awaits testing.
+              </p>
+            )}
             
             <div className="glass-card rounded-xl p-8 mb-8 relative overflow-hidden min-h-[400px]">
               <div className="absolute top-4 right-4 flex space-x-3 z-10">
@@ -192,6 +262,13 @@ const BookExperience = () => {
                     </div>
                   </div>
                   
+                  {userProfile?.walletAddress ? (
+                    <div className="mb-4 flex items-center space-x-2 bg-silence-dark/70 px-4 py-2 rounded-lg border border-silence-purple/30">
+                      <Wallet className="h-4 w-4 text-silence-cyan" />
+                      <span className="text-sm text-white/70">Wallet Connected: {userProfile.walletAddress}</span>
+                    </div>
+                  ) : null}
+                  
                   <Button 
                     size="lg"
                     className="bg-gradient-to-r from-silence-purple to-silence-pink text-white hover:opacity-90"
@@ -200,6 +277,15 @@ const BookExperience = () => {
                     <BookOpen className="mr-2 h-5 w-5" />
                     Open The Book
                   </Button>
+                  
+                  {!userProfile ? (
+                    <Link to="/settings" className="mt-4">
+                      <Button variant="outline" className="border-silence-purple/30 text-white/70">
+                        <User className="mr-2 h-4 w-4" />
+                        Create Reader Profile
+                      </Button>
+                    </Link>
+                  ) : null}
                   
                   <p className="mt-4 text-white/50 text-sm italic text-center">
                     Warning: The words will vanish as you read. <br/>
@@ -247,7 +333,7 @@ const BookExperience = () => {
                         The book records your memory...
                       </p>
                       
-                      <div className="flex space-x-4">
+                      <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
                         <Button 
                           className="bg-gradient-to-r from-silence-purple to-silence-pink text-white hover:opacity-90"
                           onClick={() => setIsReading(false)}
@@ -259,6 +345,7 @@ const BookExperience = () => {
                         <Button 
                           variant="outline" 
                           className="border-silence-purple text-white hover:bg-silence-purple/20"
+                          onClick={shareMemory}
                         >
                           <Share2 className="mr-2 h-4 w-4" />
                           Share Memory

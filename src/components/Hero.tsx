@@ -1,12 +1,16 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Brain, ArrowRight, BookOpen, Volume2, BookX } from "lucide-react";
+import { Brain, ArrowRight, BookOpen, Volume2, BookX, Bell, BellOff } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const Hero = () => {
+  const { toast } = useToast();
   const [loaded, setLoaded] = useState(false);
   const [vanishingText, setVanishingText] = useState("You will soon forget this message...");
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [memoryPoints, setMemoryPoints] = useState(0);
   
   useEffect(() => {
     setLoaded(true);
@@ -15,8 +19,37 @@ const Hero = () => {
       setVanishingText("");
     }, 5000);
     
-    return () => clearTimeout(timeout);
+    // Simulate earning memory points
+    const interval = setInterval(() => {
+      setMemoryPoints(prev => prev + Math.floor(Math.random() * 5) + 1);
+    }, 12000);
+    
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
   }, []);
+  
+  const toggleNotifications = () => {
+    setNotificationsEnabled(!notificationsEnabled);
+    
+    toast({
+      title: notificationsEnabled ? "Notifications disabled" : "Notifications enabled",
+      description: notificationsEnabled ? 
+        "You will no longer receive memory updates." : 
+        "You will now receive updates about your memory journey.",
+    });
+  };
+  
+  const handleInteraction = () => {
+    const pointsEarned = Math.floor(Math.random() * 10) + 5;
+    setMemoryPoints(prev => prev + pointsEarned);
+    
+    toast({
+      title: `+${pointsEarned} Memory Points`,
+      description: "Your interaction with the Book of Silence has been rewarded.",
+    });
+  };
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden noise-bg pt-16">
@@ -30,6 +63,25 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className={`transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} transition-all duration-1000 ease-out`}>
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center space-x-2 bg-silence-purple/20 px-3 py-1 rounded-full">
+                <Brain className="h-4 w-4 text-silence-purple" />
+                <span className="text-sm font-medium">{memoryPoints} Memory Points</span>
+              </div>
+              
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="rounded-full" 
+                onClick={toggleNotifications}
+              >
+                {notificationsEnabled ? 
+                  <Bell className="h-5 w-5 text-silence-cyan" /> : 
+                  <BellOff className="h-5 w-5 text-white/60" />
+                }
+              </Button>
+            </div>
+          
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-silence-purple to-silence-pink">Silence:</span>
               <span className="block">Embrace Oblivion,</span>
@@ -91,8 +143,13 @@ const Hero = () => {
                       </div>
                       
                       <div className="mt-4 pt-4 border-t border-white/10 flex justify-between">
-                        <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10">
-                          Forget
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-white/70 hover:text-white hover:bg-white/10"
+                          onClick={handleInteraction}
+                        >
+                          Remember
                         </Button>
                         <Link to="/book-experience">
                           <Button size="sm" className="bg-silence-purple text-white hover:bg-silence-purple/90">

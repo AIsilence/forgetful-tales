@@ -1,8 +1,8 @@
-
 import React from "react";
-import { Twitter, BookOpen, Github, ExternalLink, Heart } from "lucide-react";
+import { Twitter, BookOpen, Github, ExternalLink, Heart, Telegram } from "lucide-react";
 import { Link } from "react-router-dom";
 import silenceLogo from '@/assets/silence-logo.svg';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Footer = () => {
   return (
@@ -19,12 +19,24 @@ const Footer = () => {
             </p>
             
             <div className="flex space-x-3 mt-4">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
+              <a href="https://x.com/Silence_sol" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
                 <Twitter size={16} />
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
+              <a href="https://github.com/AIsilence" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors">
                 <Github size={16} />
               </a>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors cursor-pointer">
+                      <Telegram size={16} />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-silence-dark border border-silence-purple text-white">
+                    <p>Coming Soon</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
           

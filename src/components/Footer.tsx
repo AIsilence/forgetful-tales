@@ -1,5 +1,6 @@
+
 import React from "react";
-import { Twitter, BookOpen, Github, ExternalLink, Heart, Telegram } from "lucide-react";
+import { Twitter, BookOpen, Github, ExternalLink, Heart, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import silenceLogo from '@/assets/silence-logo.svg';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -29,7 +30,7 @@ const Footer = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <div className="w-9 h-9 rounded-full bg-silence-dark border border-silence-purple/30 flex items-center justify-center text-white/70 hover:text-silence-purple hover:border-silence-purple transition-colors cursor-pointer">
-                      <Telegram size={16} />
+                      <MessageCircle size={16} />
                     </div>
                   </TooltipTrigger>
                   <TooltipContent className="bg-silence-dark border border-silence-purple text-white">

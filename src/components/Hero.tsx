@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Brain, ArrowRight, BookOpen, Volume2, BookX, Bell, BellOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import bookImage from '/lovable-uploads/69885aeb-1af1-4a44-8f63-14d4771e2505.png';
 
 const Hero = () => {
   const { toast } = useToast();
@@ -52,12 +53,21 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden noise-bg pt-16">
-      {/* Background elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-silence-purple/20 filter blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-silence-pink/10 filter blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-3/4 left-1/2 w-40 h-40 rounded-full bg-silence-cyan/20 filter blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute w-full h-full object-cover"
+          poster={bookImage}
+        >
+          <source src="https://app.runwayml.com/creation/956b8d3c-5a04-4b9d-961d-8df1a4974e9e" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -131,14 +141,12 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      <div className="flex-1 overflow-hidden relative">
-                        <div className="space-y-4 opacity-60">
-                          <p className="text-sm text-white/90">Once upon a time in a market far away, a degenerate ape forgot his seed phrase...</p>
-                          <p className="text-sm text-white/70">The pages seemed to vanish as soon as they were read...</p>
-                          <p className="text-sm text-white/50">What was the name again? It slips from memory...</p>
-                          <p className="text-sm text-white/30">The void grows stronger with each forgotten word...</p>
-                        </div>
-                        
+                      <div className="flex-1 overflow-hidden relative flex justify-center items-center">
+                        <img 
+                          src={bookImage} 
+                          alt="Book of Silence" 
+                          className="w-full h-auto max-h-60 object-contain" 
+                        />
                         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 to-transparent"></div>
                       </div>
                       

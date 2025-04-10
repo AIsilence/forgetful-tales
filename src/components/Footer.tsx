@@ -1,8 +1,7 @@
-
 import React from "react";
 import { Twitter, BookOpen, Github, ExternalLink, Heart, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import silenceLogo from '@/assets/silence-logo.svg';
+import bookLogo from '/lovable-uploads/69885aeb-1af1-4a44-8f63-14d4771e2505.png';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Footer = () => {
@@ -12,7 +11,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
             <div className="mb-4 flex items-center">
-              <img src={silenceLogo} alt="Silence Logo" className="h-10 w-10 mr-2" />
+              <img src={bookLogo} alt="Silence Logo" className="h-10 w-10 mr-2 rounded-full object-cover" />
               <Link to="/" className="text-2xl font-bold text-white block">SILENCE</Link>
             </div>
             <p className="text-white/60 mt-2">

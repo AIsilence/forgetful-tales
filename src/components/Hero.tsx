@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Brain, ArrowRight, BookOpen, Volume2, BookX, Bell, BellOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import bookImage from '/lovable-uploads/69885aeb-1af1-4a44-8f63-14d4771e2505.png';
+import bookImage from '/lovable-uploads/book-of-silence.png';
 
 const Hero = () => {
   const { toast } = useToast();
@@ -57,17 +57,13 @@ const Hero = () => {
       {/* Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-black/50 z-10"></div>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute w-full h-full object-cover"
-          poster={bookImage}
-        >
-          <source src="https://app.runwayml.com/creation/956b8d3c-5a04-4b9d-961d-8df1a4974e9e" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src={bookImage}
+            alt="Book of Silence"
+            className="absolute w-full h-full object-cover"
+          />
+        </div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

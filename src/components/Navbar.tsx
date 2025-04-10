@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Brain, BookOpen, Landmark, HelpCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import bookLogo from '/lovable-uploads/69885aeb-1af1-4a44-8f63-14d4771e2505.png';
+import bookLogo from '/lovable-uploads/book-of-silence.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

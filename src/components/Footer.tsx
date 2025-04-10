@@ -1,7 +1,8 @@
+
 import React from "react";
 import { Twitter, BookOpen, Github, ExternalLink, Heart, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import bookLogo from '/lovable-uploads/69885aeb-1af1-4a44-8f63-14d4771e2505.png';
+import bookLogo from '/lovable-uploads/book-of-silence.png';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Footer = () => {

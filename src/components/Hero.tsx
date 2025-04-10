@@ -57,13 +57,17 @@ const Hero = () => {
       {/* Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-black/50 z-10"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <img
-            src={bookImage}
-            alt="Book of Silence"
-            className="absolute w-full h-full object-cover"
-          />
-        </div>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute w-full h-full object-cover"
+          poster={bookImage}
+        >
+          <source src="https://app.runwayml.com/videos/956b8d3c-5a04-4b9d-961d-8df1a4974e9e/preview/video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
